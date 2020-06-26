@@ -4,8 +4,6 @@ const ms = require('ms');
 
 const token = process.env.token;
 
-const PORT = process.env.PORT || 3000;
-
 const PREFIX = '=';
 
 bot.on('ready', () => {
