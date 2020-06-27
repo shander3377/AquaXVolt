@@ -74,7 +74,7 @@ bot.on('message', message => {
                     .addField(`=> Description:`, "Mute a member so they cannot type or speak.")
                     .addField(`=> Usage:`, "=mute [user] [limit] [reason] (Note :- Don't put space between tag and time limit)")
                     .addField(`=> Example:`, "=mute @Real Warrior 10m Abuse , =mute @Yashu 10m Spamming , =mute @Goku 1d Emoji Spamming")
-                    .setFooter("AQUA X VOLT", bot.user.displayAvatarURL)
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
                 message.channel.send(helpmute)
             };
             if (args[1] === "kick") {
@@ -87,7 +87,7 @@ bot.on('message', message => {
                     .addField(`=> Description:`, "Kicks a member from the server!.")
                     .addField(`=> Usage:`, "=mute [user]")
                     .addField(`=> Example:`, "=kick @Real Warrior , =kick @Yashu , =kick @Goku ")
-                    .setFooter("AQUA X VOLT", bot.user.displayAvatarURL)
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
                 message.channel.send(helpkick)
             };
             if (args[1] === "ban") {
@@ -100,7 +100,7 @@ bot.on('message', message => {
                     .addField(`=> Description:`, "Ban a member from the server!.")
                     .addField(`=> Usage:`, "=ban [user]")
                     .addField(`=> Example:`, "=ban @Real Warrior , =ban @Yashu , =ban @Goku ")
-                    .setFooter("AQUA X VOLT", bot.user.displayAvatarURL)
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
                 message.channel.send(helpban)
             };
             if (args[1] === "clear") {
@@ -113,7 +113,7 @@ bot.on('message', message => {
                     .addField(`=> Description:`, "Delete messages at once!.")
                     .addField(`=> Usage:`, "=clear [count] (Note:- You can delete max 100 at once!)")
                     .addField(`=> Example:`, "=clear 10 , =clear 97 , =clear 69 ")
-                    .setFooter("AQUA X VOLT", bot.user.displayAvatarURL)
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
                 message.channel.send(helpclear)
             };
             if (args[1] === "unmute") {
@@ -126,8 +126,34 @@ bot.on('message', message => {
                     .addField(`=> Description:`, "Unmute a member so they can type or speak.")
                     .addField(`=> Usage:`, "=unmute [user]")
                     .addField(`=> Example:`, "=unmute @Real Warrior , =unmute @Yashu , =unmute @Goku ")
-                    .setFooter("AQUA X VOLT", bot.user.displayAvatarURL)
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
                 message.channel.send(helpunmute)
+            };
+            if (args[1] === "addrole") {
+                const helpaddrole = new Discord.RichEmbed()
+                    .setColor(0xe8fc03)
+                    .setAuthor(`Addrole Command!`, bot.user.displayAvatarURL)
+                    .setThumbnail(message.guild.iconURL)
+                    .setTimestamp()
+                    .setDescription(`Addrole Help Command!`)
+                    .addField(`=> Description:`, "Adds a role to the user.")
+                    .addField(`=> Usage:`, "=addrole [user] [role]")
+                    .addField(`=> Example:`, "=addrole @Real Warrior @moderators , =addrole @Yashu @Owner")
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
+                message.channel.send(helpaddrole)
+            };
+            if (args[1] === "removerole") {
+                const helpremoverole = new Discord.RichEmbed()
+                    .setColor(0xe8fc03)
+                    .setAuthor(`Removerole Command!`, bot.user.displayAvatarURL)
+                    .setThumbnail(message.guild.iconURL)
+                    .setTimestamp()
+                    .setDescription(`Removerole Help Command!`)
+                    .addField(`=> Description:`, "Removes a role from the user.")
+                    .addField(`=> Usage:`, "=removerole [user] [role]")
+                    .addField(`=> Example:`, "=removerole @Real Warrior @moderators , =removerole @Yashu @Owner")
+                    .setFooter(message.author.username,  message.author.displayAvatarURL)
+                message.channel.send(helpremoverole)
             };
 
             break;
