@@ -281,7 +281,7 @@ bot.on('message', message => {
 
             let person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
-            let reason = args[3]
+            let reason = args.join(" ").slice(3)
 
             let muterole = message.guild.roles.find(role => role.name === 'Muted');
 
@@ -303,6 +303,7 @@ bot.on('message', message => {
             if (!reason) {
                 return message.reply("You didn't specify a reason!");
             }
+            
             if (message.member.roles.find(r => r.name === "Muted")) {
                 return message.reply('Member is already muted')
             }
