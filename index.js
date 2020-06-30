@@ -303,7 +303,6 @@ bot.on('message', message => {
             if (!reason) {
                 return message.reply("You didn't specify a reason!");
             }
-            
             if (message.member.roles.find(r => r.name === "Muted")) {
                 return message.reply('Member is already muted')
             }
