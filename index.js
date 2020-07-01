@@ -1,8 +1,30 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const ms = require('ms');
+const fs = require("fs");
 
 const token = process.env.token;
+bot.commands = new Discord.Collection();
+
+
+fs.readdir("./commands/", (err, files) => {
+
+    if (err) console.log(err);
+
+    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    if (jsfile.length <= 0) {
+        console.log("Couldn't find commands.");
+        return;
+    }
+
+    jsfile.forEach((f, i) => {
+        let props = require(`./commands/${f}`);
+        console.log(`${f} loaded!`);
+        bot.commands.set(props.help.name, props);
+    });
+
+
+});
 
 const PREFIX = '=';
 
@@ -166,97 +188,12 @@ bot.on('message', message => {
     let args = message.content.substring(PREFIX.length).split(" ");
     if (!message.content.startsWith(PREFIX)) return;
 
-    switch (args[0]) {
-        case 'kick':
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
 
-            const user = message.mentions.users.first();
-
-            if (!message.guild.me.hasPermission("KICK_MEMBERS")) {
-                const botnopermissionkickembed = new Discord.RichEmbed()
-                botnopermissionkickembed.setColor(0xFF0000)
-                botnopermissionkickembed.setDescription("I don't have Kick Members Permission.")
-                return message.channel.send(botnopermissionkickembed)
-            }
-
-            if (!message.member.hasPermission("KICK_MEMBERS")) {
-                const nopermissionkickembed = new Discord.RichEmbed()
-                nopermissionkickembed.setColor(0xFF0000)
-                nopermissionkickembed.setDescription(":x: You do not have permissions to kick members. Please contact a staff member")
-                return message.channel.send(nopermissionkickembed)
-            }
-
-
-            if (user) {
-                const member = message.guild.member(user);
-
-
-                if (member) {
-                    member.kick('You Were Kicked From The Server!').then(() => {
-                        message.channel.send(`✅ Successfully kicked ${user.tag}`);
-                    }).catch(err => {
-                        message.reply('I was unable to kick the member');
-                        console.log(err);
-                    });
-                } else {
-                    message.reply('That user isn\'t in the this guild')
-                }
-
-            } else {
-                message.reply('You need to specify a person!')
-            }
-
-            break;
-    }
+    let commandfile = bot.commands.get(cmd.slice(PREFIX.length));
+    if (commandfile) commandfile.run(bot, message, args);
 });
-
-
-bot.on('message', message => {
-
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    switch (args[0]) {
-        case 'ban':
-
-            const user = message.mentions.users.first();
-
-            if (!message.guild.me.hasPermission("BAN_MEMBERS")) {
-                const botnopermissionbanembed = new Discord.RichEmbed()
-                botnopermissionbanembed.setColor(0xFF0000)
-                botnopermissionbanembed.setDescription("I don't have Ban Members Permission.")
-                return message.channel.send(botnopermissionbanembed)
-            }
-
-            if (!message.member.hasPermission("BAN_MEMBERS")) {
-                const nopermissionbanembed = new Discord.RichEmbed()
-                nopermissionbanembed.setColor(0xFF0000)
-                nopermissionbanembed.setDescription(":x: You do not have permissions to ban members. Please contact a staff member")
-                return message.channel.send(nopermissionbanembed)
-            }
-
-
-            if (user) {
-                const member = message.guild.member(user);
-
-                if (member) {
-                    member.ban({ reason: 'You Were Bad!' }).then(() => {
-                        message.channel.send(`✅ Successfully Banned! ${user.tag}`);
-                    }).catch(err => {
-                        message.reply('I was unable to ban the member');
-                        console.log(err);
-                    });
-                } else {
-                    message.reply('That user isn\'t in the this guild')
-                }
-
-            } else {
-                message.reply('You need to specify a person!')
-            }
-
-            break;
-    }
-})
-
 
 bot.on('message', message => {
 
@@ -303,7 +240,7 @@ bot.on('message', message => {
             if (!reason) {
                 return message.reply("You didn't specify a reason!");
             }
-            
+
             if (message.member.roles.find(r => r.name === "Muted")) {
                 return message.reply('Member is already muted')
             }
@@ -328,166 +265,6 @@ bot.on('message', message => {
             break;
     }
 
-});
-
-
-bot.on('message', message => {
-
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    switch (args[0]) {
-        case 'unmute':
-            if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-                const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
-                botnopermissionmanage_rolesembed.setColor(0xFF0000)
-                botnopermissionmanage_rolesembed.setDescription("I don't have Manage Roles Permission.")
-                return message.channel.send(botnopermissionmanage_rolesembed)
-            }
-
-            if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-                const nopermissionunmuteembed = new Discord.RichEmbed()
-                nopermissionunmuteembed.setColor(0xFF0000)
-                nopermissionunmuteembed.setDescription(":x: You do not have permissions to unmute members. Please contact a staff member")
-                return message.channel.send(nopermissionunmuteembed)
-            }
-
-            let person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
-            if (!person) return message.reply("Couldn't find that member");
-
-            let muterole = message.guild.roles.find(role => role.name === 'Muted');
-
-            if (!muterole) return message.reply("Couldn't find the mute role");
-
-
-            let time = args[2];
-
-            person.removeRole(muterole.id);
-            const unmuteembed = new Discord.RichEmbed()
-            unmuteembed.setColor(0x00FFFF)
-            unmuteembed.setDescription(`✅ ${person.user.tag} has been unmuted!`);
-            message.channel.send(unmuteembed)
-
-            break;
-    }
-
-});
-
-bot.on('message', message => {
-
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    switch (args[0]) {
-        case 'addrole':
-            if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-                const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
-                botnopermissionmanage_rolesembed.setColor(0xFF0000)
-                botnopermissionmanage_rolesembed.setDescription("I Don't Have Manage Roles Permission.")
-                return message.channel.send(botnopermissionmanage_rolesembed)
-            }
-
-
-            if (!message.member.hasPermission("MANAGE_ROLES")) {
-                const nopermissionmanage_rolesembed = new Discord.RichEmbed()
-                nopermissionmanage_rolesembed.setColor(0xFF0000)
-                nopermissionmanage_rolesembed.setDescription("You don't have MANAGE ROLES permission to perform this command!")
-                return message.channel.send(nopermissionmanage_rolesembed)
-            }
-
-            let rmember = message.mentions.members.first() || message.guild.members.find(m => m.user.tag === args[0]) || message.guild.members.get(args[0])
-            if (!rmember) return message.channel.send("Please provide a user to add a role!")
-            let role = message.guild.roles.find(r => r.name == args[1]) || message.mentions.roles.first()
-            if (!role) return message.channel.send("Please provide a role to add to said user.")
-
-            if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-                return message.channel.send("I don't have Manage Roles Permission.")
-
-            if (rmember.roles.has(role.id)) {
-                return message.channel.send(`${rmember.displayName}, already has the role!`)
-            } else {
-                if (rmember.addRole(role.id).catch(e => console.log(e.message)))
-                    message.channel.send(`The role, ${role.name}, has been added to ${rmember.displayName}`)
-
-            }
-
-    }
-});
-
-bot.on('message', message => {
-
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    switch (args[0]) {
-        case 'removerole':
-            if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-                const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
-                botnopermissionmanage_rolesembed.setColor(0xFF0000)
-                botnopermissionmanage_rolesembed.setDescription("I Don't Have Manage Roles Permission.")
-                return message.channel.send(botnopermissionmanage_rolesembed)
-            }
-
-            if (!message.member.hasPermission("MANAGE_ROLES")) {
-                const nopermissionmanage_rolesembed = new Discord.RichEmbed()
-                nopermissionmanage_rolesembed.setColor(0xFF0000)
-                nopermissionmanage_rolesembed.setDescription("You don't have MANAGE ROLES permission to perform this command!")
-                return message.channel.send(nopermissionmanage_rolesembed)
-            }
-
-            let rmember = message.mentions.members.first() || message.guild.members.find(m => m.user.tag === args[0]) || message.guild.members.get(args[0])
-            if (!rmember) return message.channel.send("Please provide a user to remove a role!")
-            let role = message.guild.roles.find(r => r.name == args[1]) || message.mentions.roles.first()
-            if (!role) return message.channel.send("Please provide a role to remove to said user.")
-
-            if (!message.guild.me.hasPermission("MANAGE_ROLES"))
-                return message.channel.send("I don't have Manage Roles Permission.")
-
-            if (!rmember.roles.has(role.id)) {
-                return message.channel.send(`${rmember.displayName}, don't have the role!`)
-            } else {
-                if (rmember.removeRole(role.id).catch(e => console.log(e.message)))
-                    message.channel.send(`The role, ${role.name}, has been removed from ${rmember.displayName}`)
-
-            }
-
-    }
-});
-
-bot.on('message', message => {
-
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    switch (args[0]) {
-        case 'createrole':
-            if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-                const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
-                botnopermissionmanage_rolesembed.setColor(0xFF0000)
-                botnopermissionmanage_rolesembed.setDescription("I Don't Have Manage Roles Permission.")
-                return message.channel.send(botnopermissionmanage_rolesembed)
-            }
-
-            if (!message.member.hasPermission("MANAGE_ROLES")) {
-                const nopermissioncreate_roleembed = new Discord.RichEmbed()
-                nopermissioncreate_roleembed.setColor(0xFF0000)
-                nopermissioncreate_roleembed.setDescription(":x: You do not have permissions to create roles. Please contact a staff member")
-                return message.channel.send(nopermissioncreate_roleembed)
-            }
-
-            let args = message.content.split(" ");
-            args.shift();
-
-            message.guild.createRole({
-                name: args[0],
-                color: args[1]
-            })
-                .then(role => {
-                    console.log(`${role.name} Role Created.`);
-                    message.channel.send(`${role.name} role was created.`);
-                })
-                .catch(err => console.log(err));
-    }
 });
 
 bot.login(token);
