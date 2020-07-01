@@ -17,6 +17,11 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(nopermissionkickembed)
     }
 
+    let reason = args.join(" ").slice(28)
+
+    if (!reason) {
+        return message.reply("You didn't specify a reason!");
+    }
 
     if (user) {
         const member = message.guild.member(user);
@@ -24,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 
         if (member) {
             member.kick('You Were Kicked From The Server!').then(() => {
-                message.channel.send(`✅ Successfully kicked ${user.tag}`);
+                message.channel.send(`✅ Successfully kicked ${user.tag} | ${reason}`);
             }).catch(err => {
                 message.reply('I was unable to kick the member');
                 console.log(err);

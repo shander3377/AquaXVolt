@@ -17,13 +17,18 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(nopermissionbanembed)
     }
 
+    let reason = args.join(" ").slice(28)
+
+    if (!reason) {
+        return message.reply("You didn't specify a reason!");
+    }
 
     if (user) {
         const member = message.guild.member(user);
 
         if (member) {
-            member.ban({ reason: 'You Were Bad!' }).then(() => {
-                message.channel.send(`✅ Successfully Banned! ${user.tag}`);
+            member.ban(`${reason}`).then(() => {
+                message.channel.send(`✅ Successfully Banned! ${user.tag} | ${reason}`);
             }).catch(err => {
                 message.reply('I was unable to ban the member');
                 console.log(err);
