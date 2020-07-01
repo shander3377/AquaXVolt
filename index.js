@@ -232,7 +232,6 @@ bot.on('message', message => {
             }
 
             let time = args[2];
-            console.log(ms(time))
 
             if (!time) {
                 return message.reply("You didn't specify a time!");
