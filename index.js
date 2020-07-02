@@ -185,17 +185,6 @@ bot.on('message', message => {
 })
 
 bot.on('message', message => {
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
-
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-
-    let commandfile = bot.commands.get(cmd.slice(PREFIX.length));
-    if (commandfile) commandfile.run(bot, message, args);
-});
-
-bot.on('message', message => {
 
     let args = message.content.substring(PREFIX.length).split(" ");
     if (!message.content.startsWith(PREFIX)) return;
@@ -240,7 +229,7 @@ bot.on('message', message => {
             if (!reason) {
                 return message.reply("You didn't specify a reason!");
             }
-
+            
             if (message.member.roles.find(r => r.name === "Muted")) {
                 return message.reply('Member is already muted')
             }
