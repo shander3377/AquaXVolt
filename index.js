@@ -256,47 +256,15 @@ bot.on('message', message => {
 });
 
 bot.on('message', message => {
-
     let args = message.content.substring(PREFIX.length).split(" ");
     if (!message.content.startsWith(PREFIX)) return;
 
-    switch (args[0]) {
-        case 'unmute':
-            if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-                const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
-                botnopermissionmanage_rolesembed.setColor(0xFF0000)
-                botnopermissionmanage_rolesembed.setDescription("I don't have Manage Roles Permission.")
-                return message.channel.send(botnopermissionmanage_rolesembed)
-            }
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
 
-            if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-                const nopermissionunmuteembed = new Discord.RichEmbed()
-                nopermissionunmuteembed.setColor(0xFF0000)
-                nopermissionunmuteembed.setDescription(":x: You do not have permissions to unmute members. Please contact a staff member")
-                return message.channel.send(nopermissionunmuteembed)
-            }
-
-            let person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
-            if (!person) return message.reply("Couldn't find that member");
-
-            let muterole = message.guild.roles.find(role => role.name === 'Muted');
-
-            if (!muterole) return message.reply("Couldn't find the mute role");
-
-
-
-            if (message.member.roles.find(r => r.name === "Muted")) {
-                person.removeRole(muterole.id);
-                const unmuteembed = new Discord.RichEmbed()
-                unmuteembed.setColor(0x00FFFF)
-                unmuteembed.setDescription(`✅ ${person.user.tag} has been unmuted!`);
-                message.channel.send(unmuteembed)
-            }
-            break;
-    }
-
+    let commandfile = bot.commands.get(cmd.slice(PREFIX.length));
+    if (commandfile) commandfile.run(bot, message, args);
 });
-
 
 bot.login(token);
 
