@@ -205,9 +205,9 @@ bot.on('message', message => {
                 return message.channel.send(nopermissionmuteembed)
             }
 
-            let person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+            let person = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
 
-            let reason = args[2]
+            let reason = args[3]
 
             let muterole = message.guild.roles.find(role => role.name === 'Muted');
 
@@ -220,7 +220,7 @@ bot.on('message', message => {
                 return message.channel.send(botnopermission_manage_rolesembed)
             }
 
-            let time = args[1];
+            let time = args[2];
 
             if (!time) {
                 return message.reply("You didn't specify a time!");
@@ -249,6 +249,7 @@ bot.on('message', message => {
     }
 
 });
+
 
 
 
