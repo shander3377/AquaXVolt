@@ -284,19 +284,14 @@ bot.on('message', message => {
             if (!muterole) return message.reply("Couldn't find the mute role");
 
 
-            let time = args[2];
 
             if (message.member.roles.find(r => r.name === "Muted")) {
-                return message.reply("The user is not muted!");
+                person.removeRole(muterole.id);
+                const unmuteembed = new Discord.RichEmbed()
+                unmuteembed.setColor(0x00FFFF)
+                unmuteembed.setDescription(`✅ ${person.user.tag} has been unmuted!`);
+                message.channel.send(unmuteembed)
             }
-            person.removeRole(muterole.id);
-            const unmuteembed = new Discord.RichEmbed()
-            unmuteembed.setColor(0x00FFFF)
-            unmuteembed.setDescription(`✅ ${person.user.tag} has been unmuted!`);
-            message.channel.send(unmuteembed)
-
-
-
             break;
     }
 
