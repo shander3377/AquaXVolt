@@ -235,7 +235,7 @@ bot.on('message', message => {
             muteembed.setDescription(`✅ ${person.user.tag} has been muted for ${ms(ms(time))} | ${reason}`);
             message.channel.send(muteembed);
 
-            if (message.member.roles.find(r => r.name === "Muted")) {
+        
                 setTimeout(function () {
                     person.removeRole(muterole.id);
                     const unmuteembed = new Discord.RichEmbed()
@@ -244,7 +244,7 @@ bot.on('message', message => {
                     message.channel.send(unmuteembed)
 
                 }, ms(time));
-            }
+            
 
 
             break;
