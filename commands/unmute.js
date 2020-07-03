@@ -23,8 +23,6 @@ module.exports.run = async (bot, message, args) => {
     if (!muterole) return message.reply("Couldn't find the mute role");
 
 
-    let time = args[2];
-
     person.removeRole(muterole.id);
     const unmuteembed = new Discord.RichEmbed()
     unmuteembed.setColor(0x00FFFF)
