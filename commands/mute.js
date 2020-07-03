@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
     }
 
     let time = args[2];
-    console.log(ms(time))
+
     if (!time) {
         return message.reply("You didn't specify a time!");
     }
@@ -40,7 +40,6 @@ module.exports.run = async (bot, message, args) => {
     if (!reason) {
         return message.reply("You didn't specify a reason!");
     }
-
     if (message.member.roles.find(r => r.name === "Muted")) {
         return message.reply('Member is already muted')
     }
