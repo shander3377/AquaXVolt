@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+    await message.delete();
+    
     if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
         const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
         botnopermissionmanage_rolesembed.setColor(0xFF0000)

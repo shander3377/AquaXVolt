@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+    await message.delete();
+    
     const user = message.mentions.users.first();
 
     if (!message.guild.me.hasPermission("KICK_MEMBERS")) {

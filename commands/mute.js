@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const ms = require('ms');
 
 module.exports.run = async (bot, message, args) => {
+    await message.delete();
+    
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
         const botnopermissionmuteembed = new Discord.RichEmbed()
         botnopermissionmuteembed.setColor(0xFF0000)
