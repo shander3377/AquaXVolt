@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
         color: args[1]
     })
         .then(role => {
-            console.log(`${role.name} Role Created.`);
+            console.log(`${role.name} Role Created in ${message.guild.name}.`);
             message.channel.send(`${role.name} role was created.`);
         })
         .catch(err => console.log(err));
