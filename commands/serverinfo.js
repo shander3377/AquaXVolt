@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
+
+    if (!message.member.hasPermission("MANAGE_SERVER")) {
+        const embed = new Discord.RichEmbed()
+        embed.setColor(0xFF0000)
+        embed.setDescription("❌ You do not have permissions to check server info. Please contact a staff member")
+        return message.channel.send(embed)
+    }
+
   const verlvl = {
     0: "None",
     1: "Low",
