@@ -34,20 +34,20 @@ bot.on('ready', () => {
     bot.user.setStatus("idle");
 });
 
-bot.on("message", async message => {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;
-
-    const args = message.content.slice(PREFIX.length).trim().split(/ + /g);
-    const command = args.shift().toLowerCase();
-
-    if (command === "ping") {
-        var ping = Date.now() - message.createdTimestamp + " ms";
-        const m = await message.channel.send("ping?");
-        m.edit("PONG! `" + `${Date.now() - message.createdTimestamp}` + " ms`");
-
-    }
-});
+//bot.on("message", async message => {
+//    if (message.author.bot) return;
+//    if (!message.content.startsWith(PREFIX)) return;
+//
+//    const args = message.content.slice(PREFIX.length).trim().split(/ + /g);
+//    const command = args.shift().toLowerCase();
+//
+//    if (command === "ping") {
+//        var ping = Date.now() - message.createdTimestamp + " ms";
+//        const m = await message.channel.send("ping?");
+//        m.edit("PONG! `" + `${Date.now() - message.createdTimestamp}` + " ms`");
+//
+//    }
+//});
 
 bot.on('message', message => {
 
