@@ -3,7 +3,7 @@ const PREFIX = '=';
 
 module.exports.run = async (bot, message, args) => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;
+    if (!message.content === (PREFIX)) return;
 
     const command = args.shift().toLowerCase();
 
