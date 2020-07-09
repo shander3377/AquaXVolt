@@ -37,5 +37,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
     name: "unmute",
-    aliases: []
+    aliases: [],
+    description: "Unmute a member so they can type or speak.",
+    usage: "=unmute [user]",
+    example: "=unmute @Real Warrior , =unmute @Yashu , =unmute @Goku "
 }

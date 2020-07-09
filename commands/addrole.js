@@ -35,5 +35,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
     name: "addrole",
-    aliases: []
+    aliases: [],
+    description: "Adds a role to the user.",
+    usage: "=addrole [user] [role]",
+    example: "=addrole @Real Warrior @moderators , =addrole @Yashu @Owner"
 }

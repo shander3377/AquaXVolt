@@ -68,6 +68,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "rps",
     aliases: [""],
-    description: "Rock Paper Scissors game. React to one of the emojis to play the game.",
-    usage: "rps",
+    description: "Simple Rock Paper Scissors Game. React to one of the emojis to play the game.",
+    usage: "=rps",
+    example: "=rps"
 }

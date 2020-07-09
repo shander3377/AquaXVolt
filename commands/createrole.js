@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
     args.shift();
 
     message.guild.createRole({
-        name: args[0],
+        name: args.join(" ").slice(11),
         color: args[1]
     })
         .then(role => {
@@ -31,5 +31,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
     name: "createrole",
-    aliases: []
+    aliases: [],
+    Description: "Create a Role In The Server",
+    Usage: "=createrole [role name] [hex color code] (Note:- Hex Color Code Is Optional)",
+    Example: "=createrole Members , =createrole Winners #000fff"
 }
