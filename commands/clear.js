@@ -29,7 +29,7 @@ module.exports.help = {
     name: "clear",
     description: "Delete messages at once!",
     usage: "=clear [count] (Note:- You can delete max 100 at once!)",
-    example: "=clear 10 \n =clear 97 \n =clear 69 ",
+    example: "=clear 10 \n                      =clear 97 \n =clear 69 ",
     accessableby: "Manage Messages",
     aliases: ["purge"]
 }
