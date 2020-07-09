@@ -49,5 +49,9 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
     name: "kick",
-    aliases: []
+    aliases: [],
+    description: "Kicks a member from the server!",
+    usage: "=mute [user]",
+    example: "=kick @Real Warrior , =kick @Yashu , =kick @Goku"
+
 }
