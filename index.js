@@ -35,7 +35,7 @@ const PREFIX = '=';
 
 bot.on('ready', () => {
     console.log(`${bot.user.username} is Online!`);
-    bot.user.setActivity(`on ${bot.guilds.size} servers! | =help`);
+    bot.user.setActivity(`on ${bot.guilds.size} servers | =help`);
     bot.user.setStatus("idle");
 });
 
