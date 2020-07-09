@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "clear",
     description: "Delete messages at once!",
-    usage: "=clear [count] (Note:- You can delete max 100 at once!)",
+    usage: "=clear [count] (Note:- You can delete max 100 at once! but unable to delete those messages which are 14 days older.)",
     example: "=clear 10 \n =clear 97 \n =clear 69 ",
     accessableby: "Manage Messages",
     aliases: ["purge"],
