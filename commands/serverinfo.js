@@ -36,8 +36,6 @@ module.exports.run = async (bot, message, args) => {
     .setFooter(`Server Created: ${message.guild.createdAt}`);
 
   message.channel.send(serverembed);
-
-  message.delete();
 }
 
 module.exports.help = {
