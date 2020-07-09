@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
             -> **Command's Examples :- ** ${command.help.example || "No Examples"}
             -> **Command's Permissions :- ** ${command.help.accessableby || "Members"}
             -> **Command's Aliases :- ** ${command.help.aliases || "No Aliases"}
-            
+            For more informations use **=help command** \nExample:- **=help kick**
             `)
                 .setFooter(message.author.username, message.author.displayAvatarURL)
                 .setColor(`0x2EFF00`)
