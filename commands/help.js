@@ -35,11 +35,11 @@ module.exports.run = async (bot, message, args) => {
                 .setThumbnail(message.guild.iconURL)
                 .setTimestamp()
                 .setDescription(`
-            -> **Command's Description :- **__${command.help.description || "There is no Description for this command."}__
-            -> **Command's Usage :- ** __${command.help.usage || "No Usage"}__
-            -> **Command's Examples :- ** __${command.help.example || "No Examples"}__
-            -> **Command's Permissions :- ** __${command.help.accessableby || "Members"}__
-            -> **Command's Aliases :- ** __${command.help.aliases || "No Aliases"}__
+            -> **Command's Description :- **${command.help.description || "There is no Description for this command."}
+            -> **Command's Usage :- ** ${command.help.usage || "No Usage"}
+            -> **Command's Examples :- ** ${command.help.example || "No Examples"}
+            -> **Command's Permissions :- ** ${command.help.accessableby || "Members"}
+            -> **Command's Aliases :- ** ${command.help.aliases || "No Aliases"}
             `)
                 .setFooter(message.author.username, message.author.displayAvatarURL)
                 .setColor(`0x2EFF00`)
