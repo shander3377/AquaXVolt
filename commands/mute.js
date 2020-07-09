@@ -70,5 +70,8 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
     name: "mute",
-    aliases: []
+    aliases: [],
+    description: "Mute a member so they cannot type or speak.",
+    usage: "=mute [user] [limit] [reason] (Note :- Don't put space between tag and time limit)",
+    example: "=mute @Real Warrior 10m Abuse , =mute @Yashu 10m Spamming , =mute @Goku 1d Emoji Spamming"
 }
