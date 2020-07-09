@@ -62,7 +62,7 @@ bot.on('message', message => {
     switch (args[0]) {
         case 'info':
             if (args[1] === 'version') {
-                message.channel.send('version 1.0.6 (Beta Version)')
+                message.channel.send('version 1.0.8 (Beta Version)')
             };
             if (args[1] === 'creator') {
                 message.channel.send('Creator :- __Gaming Knights Z | ℓινє fℓαмє#1539__')
@@ -70,28 +70,6 @@ bot.on('message', message => {
 
             break;
 
-        case 'clear':
-            if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-                const nopermissionMANAGE_MESSAGESembed = new Discord.RichEmbed()
-                nopermissionMANAGE_MESSAGESembed.setColor(0xFF0000)
-                nopermissionMANAGE_MESSAGESembed.setDescription(":x: You do not have permissions to clear messages. Please contact a staff member")
-                return message.channel.send(nopermissionMANAGE_MESSAGESembed)
-            }
-
-            if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-                const botnopermissionMANAGE_MESSAGESembed = new Discord.RichEmbed()
-                botnopermissionMANAGE_MESSAGESembed.setColor(0xFF0000)
-                botnopermissionMANAGE_MESSAGESembed.setDescription("I don't have MANAGE MESSAGES Permission.")
-                return message.channel.send(botnopermissionMANAGE_MESSAGESembed)
-            }
-
-            if (!args[1]) return message.reply('Error Please Define Second Arg')
-            if (message.deletable) {
-                message.delete()
-            }
-            message.channel.bulkDelete(args[1]);
-            message.reply('Cleared!').then(msg => msg.delete(10000));
-            break;
     }
 });
 
