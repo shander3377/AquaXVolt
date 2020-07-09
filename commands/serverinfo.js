@@ -30,7 +30,8 @@ module.exports.run = async (bot, message, args) => {
     .addField("Verification Level:", verlvl[message.guild.verificationLevel], inline)
     .addField("Members:", `${message.guild.memberCount}`, inline)
     .addField("Roles:", message.guild.roles.size, inline)
-    .addField("Channels(Including Categories):", message.guild.channels.size, inline)
+    .addField("Text Channels:", message.guild.channels.filter(c => c.type === "text").size, inline)
+    .addField("Voice Channels:", message.guild.channels.filter(c => c.type === "voice").size, inline)
     .addField("You Joined:", message.member.joinedAt)
     .setFooter(`Server Created: ${message.guild.createdAt}`);
 
