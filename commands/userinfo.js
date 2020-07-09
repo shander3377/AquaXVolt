@@ -27,15 +27,15 @@ module.exports.run = (bot, message, args) => {
     const member = getMember(message, args.join(" "));
 
     // Member variables
+    const formatDate = function(date) {
+        return new Intl.DateTimeFormat('en-US').format(date)
+    }
     const joined = formatDate(member.joinedAt);
     const roles = member.roles
         .filter(r => r.id !== message.guild.id)
         .map(r => r).join(", ") || 'none';
 
     // User variables
-    const formatDate = function(date) {
-        return new Intl.DateTimeFormat('en-US').format(date)
-    }
     const created = formatDate(member.user.createdAt);
 
     const embed = new RichEmbed()
