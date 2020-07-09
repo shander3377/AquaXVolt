@@ -38,7 +38,8 @@ module.exports.run = (bot, message, args) => {
     // User variables
     const created = formatDate(member.user.createdAt);
 
-    const embed = new RichEmbed()
+    const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
         .setFooter("Searched by " + message.author.username, message.author.displayAvatarURL)
         .setThumbnail(member.user.displayAvatarURL)
         .setColor(member.displayHexColor === '#000000' ? '#ffffff' : member.displayHexColor)
