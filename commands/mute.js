@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const nopermissionmuteembed = new Discord.RichEmbed()
         nopermissionmuteembed.setColor(0xFF0000)
-        nopermissionmuteembed.setDescription("❌ You do not have permissions to mute members. Please contact a staff member")
+        nopermissionmuteembed.setDescription("❌ You do not have permissions to mute members. Please contact a staff member.[Missing Permission:- Manage Messages]")
         return message.channel.send(nopermissionmuteembed)
     }
 
@@ -71,6 +71,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "mute",
     aliases: [],
+    accessableby: "Manage Messages",
     description: "Mute a member so they cannot type or speak.",
     usage: "=mute [user] [limit] [reason] (Note :- Don't put space between tag and time limit)",
     example: "=mute @Real Warrior 10m Abuse , =mute @Yashu 10m Spamming , =mute @Goku 1d Emoji Spamming"

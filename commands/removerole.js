@@ -37,6 +37,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "removerole",
     aliases: [],
+    accessableby: "Manage Roles",
     description: "Removes a role from the user.",
     usage: "=removerole [user] [role]",
     example: "=removerole @Real Warrior @moderators , =removerole @Yashu @Owner"

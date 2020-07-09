@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
   if (!message.member.hasPermission("MANAGE_GUILD")) {
     const embed = new Discord.RichEmbed()
     embed.setColor(0xFF0000)
-    embed.setDescription("❌ You do not have permissions to check server info. Please contact a staff member")
+    embed.setDescription("❌ You do not have permissions to check server info. Please contact a staff member.[Missing Permission:- Manage Server]")
     return message.channel.send(embed)
   }
 
@@ -41,6 +41,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
   name: "serverinfo",
   aliases: [],
+  accessableby: "Manage Server",
   description: "Show Useful Infomation About The Server",
   usage: "=serverinfo",
   example: "=serverinfo"

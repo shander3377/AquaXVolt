@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("KICK_MEMBERS")) {
         const nopermissionkickembed = new Discord.RichEmbed()
         nopermissionkickembed.setColor(0xFF0000)
-        nopermissionkickembed.setDescription(":x: You do not have permissions to kick members. Please contact a staff member")
+        nopermissionkickembed.setDescription(":x: You do not have permissions to kick members. Please contact a staff member.[Missing Permission:- Kick Members]")
         return message.channel.send(nopermissionkickembed)
     }
 
@@ -50,6 +50,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "kick",
     aliases: [],
+    accessableby: "Kick Members",
     description: "Kicks a member from the server!",
     usage: "=mute [user]",
     example: "=kick @Real Warrior , =kick @Yashu , =kick @Goku"

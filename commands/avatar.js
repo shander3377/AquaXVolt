@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const embed = new Discord.RichEmbed()
         embed.setColor(0xFF0000)
-        embed.setDescription("❌ You do not have permissions to check avatar of Server Members. Please contact a staff member")
+        embed.setDescription("❌ You do not have permissions to check avatar of Server Members. Please contact a staff member.[Missing Permsission:- Manage Messages]")
         return message.channel.send(embed)
     }
 

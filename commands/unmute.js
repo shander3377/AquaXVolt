@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const nopermissionunmuteembed = new Discord.RichEmbed()
         nopermissionunmuteembed.setColor(0xFF0000)
-        nopermissionunmuteembed.setDescription(":x: You do not have permissions to unmute members. Please contact a staff member")
+        nopermissionunmuteembed.setDescription(":x: You do not have permissions to unmute members. Please contact a staff member.[Missing Permission:- Manage Messages]")
         return message.channel.send(nopermissionunmuteembed)
     }
 
@@ -38,6 +38,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "unmute",
     aliases: [],
+    accessableby: "Manage Messages",
     description: "Unmute a member so they can type or speak.",
     usage: "=unmute [user]",
     example: "=unmute @Real Warrior , =unmute @Yashu , =unmute @Goku "

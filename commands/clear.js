@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const nopermissionMANAGE_MESSAGESembed = new Discord.RichEmbed()
         nopermissionMANAGE_MESSAGESembed.setColor(0xFF0000)
-        nopermissionMANAGE_MESSAGESembed.setDescription(":x: You do not have permissions to clear messages. Please contact a staff member")
+        nopermissionMANAGE_MESSAGESembed.setDescription(":x: You do not have permissions to clear messages. Please contact a staff member.[Missing Permission:- Manage Messages]")
         return message.channel.send(nopermissionMANAGE_MESSAGESembed)
     }
 
@@ -29,7 +29,8 @@ module.exports.help = {
     name: "clear",
     description: "Delete messages at once!",
     usage: "=clear [count] (Note:- You can delete max 100 at once!)",
-    example: "=clear 10 \n                      =clear 97 \n =clear 69 ",
+    example: "=clear 10 \n =clear 97 \n =clear 69 ",
     accessableby: "Manage Messages",
-    aliases: ["purge"]
+    aliases: ["purge"],
+    accessableby: "Manages Messages"
 }

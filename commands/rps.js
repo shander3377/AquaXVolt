@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES","EMBED_LINKS","ADD_REACTIONS")) {
         const botnopermissionmanage_rolesembed = new RichEmbed()
         botnopermissionmanage_rolesembed.setColor(0xFF0000)
-        botnopermissionmanage_rolesembed.setDescription("Check My Permissions.[Missing Permissions:- MANAGE_MESSAGES ,EMBED_LINKS ,ADD_REACTIONS]")
+        botnopermissionmanage_rolesembed.setDescription("Check My Permissions.[Missing Permissions:- MANAGE MESSAGES ,EMBED LINKS ,ADD REACTIONS]")
         return message.channel.send(botnopermissionmanage_rolesembed)
     }
 

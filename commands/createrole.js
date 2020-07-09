@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         const nopermissioncreate_roleembed = new Discord.RichEmbed()
         nopermissioncreate_roleembed.setColor(0xFF0000)
-        nopermissioncreate_roleembed.setDescription(":x: You do not have permissions to create roles. Please contact a staff member")
+        nopermissioncreate_roleembed.setDescription(":x: You do not have permissions to create roles. Please contact a staff member.[Missing Permission:- Manage Roles]")
         return message.channel.send(nopermissioncreate_roleembed)
     }
 
@@ -32,6 +32,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "createrole",
     aliases: [],
+    accessableby: "Manage Roles",
     Description: "Create a Role In The Server",
     Usage: "=createrole [role name] [hex color code] (Note:- Hex Color Code Is Optional)",
     Example: "=createrole Members , =createrole Winners #000fff"

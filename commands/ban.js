@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("BAN_MEMBERS")) {
         const nopermissionbanembed = new Discord.RichEmbed()
         nopermissionbanembed.setColor(0xFF0000)
-        nopermissionbanembed.setDescription(":x: You do not have permissions to ban members. Please contact a staff member")
+        nopermissionbanembed.setDescription(":x: You do not have permissions to ban members. Please contact a staff member.[Missing Permission:- Ban Members]")
         return message.channel.send(nopermissionbanembed)
     }
 
@@ -48,6 +48,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "ban",
     aliases: [],
+    accessableby: "Ban Members",
     description: "Ban a member from the server!.",
     usage: "=ban [user]",
     example: "=ban @Real Warrior , =ban @Yashu , =ban @Goku "

@@ -2,6 +2,14 @@ const Discord = require("discord.js");
 const PREFIX = '=';
 
 module.exports.run = async (bot, message, args) => {
+
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+        const embed = new Discord.RichEmbed()
+        embed.setColor(0xFF0000)
+        embed.setDescription("❌ You do not have permissions to mute members. Please contact a staff member.[Missing Permission:- Manage Messages]")
+        return message.channel.send(embed)
+    }
+
     if (message.author.bot) return;
     if (!message.content.startsWith(PREFIX)) return;
 
@@ -18,6 +26,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name:"ping",
     aliases: [],
+    accessableby: "Manage Messages",
     description: "Check ping of the bot",
     usage: "=ping",
     example: "=ping "

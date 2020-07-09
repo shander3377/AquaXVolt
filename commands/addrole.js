@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_ROLES")) {
         const nopermissionmanage_rolesembed = new Discord.RichEmbed()
         nopermissionmanage_rolesembed.setColor(0xFF0000)
-        nopermissionmanage_rolesembed.setDescription("You don't have MANAGE ROLES permission to perform this command!")
+        nopermissionmanage_rolesembed.setDescription(":x: You don't have MANAGE ROLES permission to perform this command!")
         return message.channel.send(nopermissionmanage_rolesembed)
     }
 
@@ -36,6 +36,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
     name: "addrole",
     aliases: [],
+    accessableby: "Manage Roles",
     description: "Adds a role to the user.",
     usage: "=addrole [user] [role]",
     example: "=addrole @Real Warrior @moderators , =addrole @Yashu @Owner"

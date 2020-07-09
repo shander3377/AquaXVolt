@@ -3,6 +3,14 @@ const { stripIndents } = require("common-tags");
 
 
 module.exports.run = (bot, message, args) => {
+
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+        const embed = new Discord.RichEmbed()
+        embed.setColor(0xFF0000)
+        embed.setDescription("❌ You do not have permissions to mute members. Please contact a staff member.[Missing Permission:- Manage Messages]")
+        return message.channel.send(embed)
+    }
+
     const getMember = function(message, toFind = '') {
         toFind = toFind.toLowerCase();
 
@@ -64,6 +72,7 @@ module.exports.run = (bot, message, args) => {
 module.exports.help = {
     name: "userinfo",
     aliases: ["whois"],
+    accessableby: "Manage Messages",
     description: "Returns user information",
     usage: "[username | id | mention]",
 }
