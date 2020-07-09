@@ -19,6 +19,7 @@ module.exports.run = async (bot, message, args) => {
             .setThumbnail(message.guild.iconURL)
             .setTimestamp()
             .setDescription("**Moderation**\n ``Clear`` | ``Mute`` | ``Unmute`` | ``Kick`` | ``Ban`` | ``CreateRole`` | ``Addrole`` | ``Removerole``\n **Info**\n``Ping`` | ``Info (Version/Creator)`` | ``Serverinfo`` | ``Userinfo`` \n**Fun**\n ``Avatar`` | ``Coinflip`` | ``Rps`` \n**Prefix (Default)**\n``=``")
+            .addField(`For More Information Use **=help command** \nExample:- **=help kick**`)
             .setFooter(message.author.username, message.author.displayAvatarURL)
             .setColor('0x00FFF3')
 
@@ -40,7 +41,6 @@ module.exports.run = async (bot, message, args) => {
             -> **Command's Examples :- ** ${command.help.example || "No Examples"}
             -> **Command's Permissions :- ** ${command.help.accessableby || "Members"}
             -> **Command's Aliases :- ** ${command.help.aliases || "No Aliases"}
-            For More Information Use **=help command** \nExample:- **=help kick**
             `)
                 .setFooter(message.author.username, message.author.displayAvatarURL)
                 .setColor(`0x2EFF00`)
