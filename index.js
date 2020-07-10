@@ -39,6 +39,18 @@ bot.on('ready', () => {
     bot.user.setStatus("idle");
 });
 
+bot.on("guildCreate", guild => {
+    // This event triggers when the bot joins a guild.
+    console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+    bot.user.setActivity(`on ${bot.guilds.size} servers | =help`);
+});
+
+bot.on("guildDelete", guild => {
+    // this event triggers when the bot is removed from a guild.
+    console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+    bot.user.setActivity(`on ${bot.guilds.size} servers | =help`);
+});
+
 //bot.on("message", async message => {
 //    if (message.author.bot) return;
 //    if (!message.content.startsWith(PREFIX)) return;
