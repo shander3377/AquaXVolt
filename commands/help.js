@@ -3,13 +3,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-    if (!message.member.hasPermission("MANAGE_GUILD")) {
-        const embed = new Discord.RichEmbed()
-        embed.setColor(0xFF0000)
-        embed.setDescription("❌ You do not have permissions to check server info. Please contact a staff member.[Missing Permission:- Manage Server]")
-        return message.channel.send(embed)
-    }
-
     let helpArray = message.content.split(" ");
     let helpArgs = helpArray.slice(1);
 
