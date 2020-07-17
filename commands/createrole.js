@@ -15,11 +15,15 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send(nopermissioncreate_roleembed)
     }
 
-    args.shift();
-
+    const arguments = message.content.split(" ");
+    const arg = arguments.shift();
+    const rolename = args.slice(0, -1).join(" ").slice(10)
+    console.log(rolename);
+    const colorname = args.slice(args.length - 1);
+    console.log(colorname)
     message.guild.createRole({
-        name: args.join(" ").slice(11),
-        color: args[1]
+        name: rolename,
+        color: colorname
     })
         .then(role => {
             console.log(`${role.name} Role Created in ${message.guild.name}.`);
