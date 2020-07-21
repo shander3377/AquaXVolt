@@ -6,32 +6,14 @@ const fs = require("fs");
 const token = process.env.token;
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
-
-
-fs.readdir("./commands/", (err, files) => {
-
-    if (err) console.log(err);
-
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if (jsfile.length <= 0) {
-        console.log("Couldn't find commands.");
-        return;
-    }
-
-    jsfile.forEach((f, i) => {
-        let props = require(`./commands/${f}`);
-        console.log(`${f} loaded!`);
-        bot.commands.set(props.help.name, props);
-        bot.commands.set(props.help.name, props);
-        props.help.aliases.forEach(alias => {
-            bot.aliases.set(alias, props.help.name)
-        });
-    });
-
-
+bot.categories = fs.readdirSync("./commands/");
+["command"].forEach(handler => {
+    require(`./handlers/${handler}`)(bot);
 });
 
-const PREFIX = '=';
+
+
+const PREFIX = '+';
 
 bot.on('ready', () => {
     console.log(`${bot.user.username} is Online!`);
@@ -87,14 +69,20 @@ bot.on('message', message => {
 
 
 bot.on('message', message => {
-    let args = message.content.substring(PREFIX.length).split(" ");
-    if (!message.content.startsWith(PREFIX)) return;
+    if(!message.content.startsWith(PREFIX)) return;
+    const args = message.content.slice(PREFIX.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
+    
+    if (cmd.length === 0) return;
+    
+    // Get the command
+    let command = bot.commands.get(cmd);
+    // If none is found, try to find it by alias
+    if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-
-    let commandfile = bot.commands.get(cmd.slice(PREFIX.length)) || bot.commands.get(bot.aliases.get(cmd.slice(PREFIX.length)));
-    if (commandfile) commandfile.run(bot, message, args);
+    // If a command is finally found, run the command
+    if (command) 
+        command.run(bot, message, args);
 });
 
-bot.login(token);
+bot.login("NjI2MDM4NjQyMjg4MDk5MzM4.XxKp2g.yGxMSQEjS8PfBcUG91OOYz7tmzk");

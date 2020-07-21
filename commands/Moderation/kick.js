@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "kick",
+    aliases: ["k"],
+    category: "Moderation",
+    description: "KICK SOMEBODY IN THEIR ASS",
+    usage: "[command][user]",
+    example: "=kick @noobgirl007 so pro!",
+    permissionss: "ADMINISTRATOR",
+    run: async (client, message, args) => {
     await message.delete();
     
     const user = message.mentions.users.first();
@@ -46,13 +54,5 @@ module.exports.run = async (bot, message, args) => {
 
 
 }
-
-module.exports.help = {
-    name: "kick",
-    aliases: [],
-    accessableby: "Kick Members",
-    description: "Kicks a member from the server!",
-    usage: "=mute [user]",
-    example: "=kick @Real Warrior , =kick @Yashu , =kick @Goku"
 
 }

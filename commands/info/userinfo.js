@@ -2,7 +2,15 @@ const { RichEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 
 
-module.exports.run = (bot, message, args) => {
+module.exports = {
+    name: "userinfo",
+    aliases: ["ui"],
+    category: "info",
+    description: "get some info about ur bootifull profile",
+    usage: "[command | alias]",
+    example: "=userinfo @noobgirl007",
+
+    run: async (client, message, args) => {
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const embed = new Discord.RichEmbed()
@@ -69,10 +77,5 @@ module.exports.run = (bot, message, args) => {
 
 }
 
-module.exports.help = {
-    name: "userinfo",
-    aliases: ["whois"],
-    accessableby: "Manage Messages",
-    description: "Returns user information",
-    usage: "[username | id | mention]",
+
 }

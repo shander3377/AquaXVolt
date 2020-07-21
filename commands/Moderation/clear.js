@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "clear",
+    category: "Moderation",
+    description: "clears your trash messages",
+    usage: "[command][no. of messages to clear",
+    aliases: ["c"],
+    example: "=clear 69",
+    permissionss: "ADMINISTRATOR",
+    run: async (client, message, args) => {
     await message.delete();
     
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -25,12 +33,4 @@ module.exports.run = async (bot, message, args) => {
     message.reply('Cleared!').then(msg => msg.delete(10000));
 }
 
-module.exports.help = {
-    name: "clear",
-    description: "Delete messages at once!",
-    usage: "=clear [count] (Note:- You can delete max 100 at once! but unable to delete those messages which are 14 days older.)",
-    example: "=clear 10 \n =clear 97 \n =clear 69 ",
-    accessableby: "Manage Messages",
-    aliases: ["purge"],
-    accessableby: "Manages Messages"
 }

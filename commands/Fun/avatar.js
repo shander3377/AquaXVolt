@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "avatar",
+    category: "Fun",
+    description: "Show your avatar",
+    usage: "[command][user]",
+    aliases: ["a"],
+    example: "=avatar @gamergirl007 ",
+
+    run: async (client, message, args) => {
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const embed = new Discord.RichEmbed()
@@ -27,11 +35,4 @@ module.exports.run = async (bot, message, args) => {
     msg.delete();
 }
 
-module.exports.help = {
-    name: "avatar",
-    description: "Shows avatar of a user",
-    usage: "=avatar / =avatar @Real Warrior",
-    example: "=avatar \n =avatar @Real Warrior",
-    accessableby: "Manage Messages",
-    aliases: ["av"]
 }

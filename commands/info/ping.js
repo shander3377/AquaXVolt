@@ -1,7 +1,15 @@
 const Discord = require("discord.js");
 const PREFIX = '=';
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "ping",
+    aliases: ["p"],
+    category: "info",
+    description: "returns a thing which doesnt matters at all, not at all",
+    usage: "[command | alias]",
+    example: "=ping",
+    
+    run: async (client, message, args) => {
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         const embed = new Discord.RichEmbed()
@@ -23,11 +31,4 @@ module.exports.run = async (bot, message, args) => {
     }
 }
 
-module.exports.help = {
-    name:"ping",
-    aliases: [],
-    accessableby: "Manage Messages",
-    description: "Check ping of the bot",
-    usage: "=ping",
-    example: "=ping "
-  }
+}

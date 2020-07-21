@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "ban",
+    category: "Moderation",
+    description: "BAN PEOPLE",
+    usage: "[command][user]",
+    aliases: ["b"],
+    example: "=ban @noobgirl007 so pro!",
+    permissionss: "ADMINISTRATOR",
+    run: async (client, message, args) => {
     await message.delete();
     
     const user = message.mentions.users.first();
@@ -45,11 +53,4 @@ module.exports.run = async (bot, message, args) => {
 
 }
 
-module.exports.help = {
-    name: "ban",
-    aliases: [],
-    accessableby: "Ban Members",
-    description: "Ban a member from the server!.",
-    usage: "=ban [user]",
-    example: "=ban @Real Warrior , =ban @Yashu , =ban @Goku "
 }

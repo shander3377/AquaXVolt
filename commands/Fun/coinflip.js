@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "coinflip",
+    category: "Fun",
+    description: "decide something, do a coinflip",
+    usage: "[command]",
+    aliases: ["cf"],
+    example: "=coinflip ",
+
+    run: async (client, message, args) => {
         var choices = [
             "heads",
             "tails"
@@ -12,10 +20,4 @@ module.exports.run = async (bot, message, args) => {
         
 }
 
-module.exports.help = {
-    name: "coinflip",
-    aliases: ["flip"],
-    description: "Simple Coinflip Game or You Can Call This Head or Tail Game",
-    usage: "=coinflip",
-    example: "=coinflip"
 }

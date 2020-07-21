@@ -2,7 +2,15 @@ const { RichEmbed } = require("discord.js");
 const chooseArr = ["🗻", "📰", "✂"];
 
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "rps",
+    aliases: ["rps"],
+    category: "Fun",
+    description: "makes bot play child's games with the author",
+    usage: "[command | alias]",
+    example: "=rps",
+
+    run: async (client, message, args) => {
 
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES","EMBED_LINKS","ADD_REACTIONS")) {
         const botnopermissionmanage_rolesembed = new RichEmbed()
@@ -65,10 +73,4 @@ module.exports.run = async (bot, message, args) => {
         }
     }
 }
-module.exports.help = {
-    name: "rps",
-    aliases: [""],
-    description: "Simple Rock Paper Scissors Game. React to one of the emojis to play the game.",
-    usage: "=rps",
-    example: "=rps"
 }

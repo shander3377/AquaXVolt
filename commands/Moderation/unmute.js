@@ -1,6 +1,13 @@
 const Discord = require("discord.js");
-
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "unmute",
+    aliases: ["um"],
+    category: "Moderation",
+    description: "UNMUTE THAT GOD DAMN USER WHO MUTED USING THE MUTE COMMAND",
+    usage: "[command][user]",
+    example: "=unmute @noobboi007",
+    permissionss: "ADMINISTRATOR",
+    run: async (client, message, args) => {
     await message.delete();
     
     if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
@@ -25,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
     if (!muterole) return message.reply("Couldn't find the mute role");
 
 
-    let time = args[2];
+   
     
     person.removeRole(muterole.id);
     const unmuteembed = new Discord.RichEmbed()
@@ -35,11 +42,5 @@ module.exports.run = async (bot, message, args) => {
 
 }
 
-module.exports.help = {
-    name: "unmute",
-    aliases: [],
-    accessableby: "Manage Messages",
-    description: "Unmute a member so they can type or speak.",
-    usage: "=unmute [user]",
-    example: "=unmute @Real Warrior , =unmute @Yashu , =unmute @Goku "
+
 }

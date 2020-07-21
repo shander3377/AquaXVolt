@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+  name: "serverinfo",
+  aliases: ["si"],
+  category: "info",
+  description: "shows some  \"true\" stats about ur \"very bootifull\" serber",
+  usage: "[command | alias]",
+  example: "=serverinfo",
+ 
+  run: async (client, message, args) => {
 
   if (!message.member.hasPermission("MANAGE_GUILD")) {
     const embed = new Discord.RichEmbed()
@@ -38,11 +46,4 @@ module.exports.run = async (bot, message, args) => {
   message.channel.send(serverembed);
 }
 
-module.exports.help = {
-  name: "serverinfo",
-  aliases: [],
-  accessableby: "Manage Server",
-  description: "Show Useful Infomation About The Server",
-  usage: "=serverinfo",
-  example: "=serverinfo"
 }

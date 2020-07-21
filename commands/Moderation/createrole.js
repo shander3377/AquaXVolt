@@ -1,6 +1,14 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports = {
+    name: "createrole",
+    category: "Moderation",
+    description: "create a role then add it using add role command",
+    usage: "[command][user][role]",
+    aliases: ["cr"],
+    example: "=creatrole pro girls #FFFFFF",
+    permissionss: "ADMINISTRATOR",
+    run: async (client, message, args) => {
     if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
         const botnopermissionmanage_rolesembed = new Discord.RichEmbed()
         botnopermissionmanage_rolesembed.setColor(0xFF0000)
@@ -33,11 +41,4 @@ module.exports.run = async (bot, message, args) => {
 
 }
 
-module.exports.help = {
-    name: "createrole",
-    aliases: [],
-    accessableby: "Manage Roles",
-    Description: "Create a Role In The Server",
-    Usage: "=createrole [role name] [hex color code] (Note:- Hex Color Code Is Optional)",
-    Example: "=createrole Members , =createrole Winners #000fff"
 }
